@@ -1,7 +1,10 @@
 import fastf1
 import pandas as pd
+import os
 
-fastf1.Cache.enable_cache("cache")
+cache_dir = "cache"
+os.makedirs(cache_dir, exist_ok=True)
+fastf1.Cache.enable_cache(cache_dir)
 
 def get_fastest_laps(race: str, year: int) -> dict:
     try:
