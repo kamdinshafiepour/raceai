@@ -3,6 +3,7 @@
 venv/
 __pycache__/
 .cache/
+src/cache/
 *.pyc
 src/test_fastf1.py
 src/main-test.py
