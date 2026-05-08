@@ -4,10 +4,13 @@ from anthropic import Anthropic
 from dotenv import load_dotenv
 import sys
 import os
+
 sys.path.append(os.path.dirname(__file__))
 from data import get_fastest_laps, get_driver_standings
 
 load_dotenv()
+
+os.environ["ANTHROPIC_API_KEY"] = st.secrets.get("ANTHROPIC_API_KEY", os.getenv("ANTHROPIC_API_KEY", ""))
 
 client = Anthropic()
 
