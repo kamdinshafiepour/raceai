@@ -100,3 +100,6 @@ if prompt := st.chat_input("Ask about any F1 race..."):
         st.markdown(answer)
 
     st.session_state.messages.append({"role": "assistant", "content": answer})
+
+st.markdown("---")
+st.caption("Built by Kamdin Shafiepour")
