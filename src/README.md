@@ -1,25 +1,33 @@
 # RaceAI 🏎️
 
 A conversational Formula 1 data analyst built with Claude AI and FastF1.
-Ask natural language questions about race lap times and championship standings, 
-the AI fetches real telemetry data and answers intelligently.
+Ask natural language questions about race lap times and championship standings -
+the AI fetches real data and answers intelligently.
 
 ## Live demo
 
-👉 https://raceai-ks-pr1.streamlit.app/
+👉 [raceai-ks-pr1.streamlit.app](https://raceai-ks-pr1.streamlit.app/)
+
+## Example questions
+
+- What were the fastest laps at Monaco 2023?
+- Who won the 2024 championship?
+- What were the fastest laps at Silverstone 2022?
+- Who led the 2021 championship?
 
 ## What it does
 
 - Fastest lap times for any F1 race and year
-- Driver championship standings
+- Driver championship standings with full season points
 - Multi-turn conversation with full context memory
-- Real F1 telemetry data via FastF1
+- Real F1 data from two dedicated sources
 
 ## Tech stack
 
 - Python
 - Anthropic Claude API (AI + tool use)
-- FastF1 (official F1 telemetry data)
+- FastF1 (official F1 telemetry — lap times)
+- Ergast API via Jolpi (championship standings)
 - Streamlit (UI)
 
 ## How it works

@@ -85,6 +85,13 @@ def run_agent(user_message: str, conversation_history: list) -> str:
 st.set_page_config(page_title="RaceAI", page_icon="🏎️")
 st.title("RaceAI")
 st.caption("Formula 1 data analyst · powered by Claude + FastF1")
+with st.expander("Example questions"):
+    st.markdown("""
+- What were the fastest laps at Monaco 2023?
+- Who won the 2024 championship?
+- What were the fastest laps at Silverstone 2022?
+- Who led the 2021 championship?
+    """)
 
 if "conversation_history" not in st.session_state:
     st.session_state.conversation_history = []

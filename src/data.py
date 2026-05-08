@@ -1,6 +1,8 @@
 import fastf1
 import pandas as pd
 import os
+import requests
+
 
 cache_dir = "cache"
 os.makedirs(cache_dir, exist_ok=True)
@@ -37,25 +39,27 @@ def get_fastest_laps(race: str, year: int) -> dict:
 
 def get_driver_standings(year: int) -> dict:
     try:
-        schedule = fastf1.get_event_schedule(year)
-        last_round = schedule[schedule["EventFormat"] != "testing"]["RoundNumber"].max()
+        url = f"https://api.jolpi.ca/ergast/f1/{year}/driverStandings.json"
+        response = requests.get(url, timeout=10)
+        data = response.json()
 
-        session = fastf1.get_session(year, int(last_round), "R")
-        session.load(telemetry=False, weather=False, messages=False)
+        standings_list = data["MRData"]["StandingsTable"]["StandingsLists"]
+        if not standings_list:
+            return {"error": f"No standings data found for {year}"}
 
-        results = session.results[["Abbreviation", "TeamName", "Points"]].copy()
-        results = results.sort_values("Points", ascending=False).head(5)
+        standings_data = standings_list[0]["DriverStandings"][:5]
 
         standings = []
-        for pos, (_, row) in enumerate(results.iterrows(), start=1):
+        for item in standings_data:
             standings.append({
-                "position": pos,
-                "driver": row["Abbreviation"],
-                "team": row["TeamName"],
-                "points": int(row["Points"])
+                "position": int(item["position"]),
+                "driver": f"{item['Driver']['givenName']} {item['Driver']['familyName']}",
+                "team": item["Constructors"][0]["name"],
+                "points": float(item["points"])
             })
 
         return {"year": year, "standings": standings}
 
     except Exception as e:
+        print(f"Standings error: {e}")
         return {"error": str(e)}
