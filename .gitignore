@@ -8,3 +8,5 @@ src/cache/
 src/test_fastf1.py
 src/main-test.py
 src/notes.md
+src/test_fastf1.py
+src/__pycache__/
