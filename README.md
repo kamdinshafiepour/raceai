@@ -6,7 +6,7 @@ the AI fetches real data and answers intelligently.
 
 ## Live demo
 
-👉 [raceai-ks-pr1.streamlit.app](https://raceai-ks-pr1.streamlit.app/)
+👉 [raceai-ks-pr1.streamlit.app](https://raceai-ks-pr6.streamlit.app/)
 
 ## Example questions
 
